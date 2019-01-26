@@ -33,7 +33,8 @@ end
 
 ## Methods
 
-* __get_image__ - Checks if the filename format is in the extensions whitelist, validates if the received image content has any content. Return nil in case of error, or in case of success a table with:
+* __get_image(image_name, image_content)__
+Checks if the filename format is in the extensions whitelist, validates if the received image content has any content. Return nil in case of error, or in case of success a table with:
 ```lua
 {
     name = "Random generated name so it can be stored",
@@ -44,7 +45,37 @@ end
     fullname = "Image name + extension"
 }
 ```
-* __save_image__ - Receives the image table obtained from get_image and saves the image with the generated name in the configurated base_folder.
-* __delete_image__ - Receives an image fullname and deletes it from the configurated base_folder.
-* __set_base_folder__ - Changes the base folder of the images. (default "./")
-* __set_allowed_formats__ - Sets a new table with the allowed image formats. (default {".jpg", ".png", ".jpeg", ".bmp"})
+* __save_image(image)__ 
+Receives the image table obtained from get_image and saves the image with the generated name in the configurated base_folder.
+
+* __delete_image(image_name)__
+ Receives an image fullname and deletes it from the configurated base_folder.
+
+* __set_base_folder(path)__ 
+Changes the base folder of the images. (default "./")
+
+* __set_allowed_formats(formats)__
+Sets a new table with the allowed image formats. (default {".jpg", ".png", ".jpeg", ".bmp"})
+
+
+## Dependencies
+
+* [magick](https://github.com/leafo/magick) - For checking image content and gathering the image width and height.
+
+* [printable_chars](https://github.com/drmargarido/printable_chars) - To help in the generation of random file names.
+
+
+## Installation
+
+Magic depends on LuaJIT and MagickWand.
+On Ubuntu, to use ImageMagick, you might run:
+```sh
+sudo apt-get install luajit
+sudo apt-get install libmagickwand-dev
+```
+
+Use LuaRocks to install the lua packages:
+```sh
+sudo apt-get install luarocks
+luarocks install post_image
+```
