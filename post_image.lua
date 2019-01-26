@@ -19,7 +19,7 @@ local ALLOWED_IMAGE_EXTENSIONS = {
     [".bmp"] = true
 }
 
-local media_path = "./"
+local base_folder = "./"
 
 
 --[[    Private helpers     ]]--
@@ -58,7 +58,7 @@ end
 
 -- Set the folder where the images will managed
 local function set_base_folder(path)
-    media_path = path or "./"
+    base_folder = path or "./"
 end
 
 
@@ -85,21 +85,19 @@ local function get_image(image_name, image_content)
     end
 
     image.content = image_content
-
-    -- Filesystem paths
-    image.full_path = image.name .. image.extension
+    image.fullname = image.name .. image.extension
 
     return image
 end
 
 local function save_image(image)
-    local file = io.open(media_path .. image.full_path, "w")
+    local file = io.open(base_folder .. image.fullname, "w")
     file:write(image.content)
     file:close()
 end
 
-local function delete_image(image)
-    os.remove(media_path .. image.full_path)
+local function delete_image(image_name)
+    os.remove(base_folder .. image.image_name)
 end
 
 return {
