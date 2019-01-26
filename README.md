@@ -3,10 +3,30 @@
 This library wraps the common code that is needed to handle images when they are submitted to an application over the internet.
 
 
-## Lapis Example
+## Usage Example - [Lapis](http://leafo.net/lapis/)
 
 ```lua
-for i=0 do
+local get_image = require "post_image.get_image"
+local save_image = require "post_image.save_image"
+
+POST = function(self)
+    -- Get the form posted image data from the request
+    local filename = self.params.photo.filename
+    local content = self.params.photo.content
+
+    -- Get the photo
+    local photo = get_image(filename, content)
+    
+    -- Check result
+    if not photo then
+        print("Received an invalid photo")
+        return { status=400 }
+    end
+
+    -- Save the new image in the base_folder
+    save_image(photo)
+
+    return { status=200 }
 end
 ```
 

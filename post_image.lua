@@ -69,21 +69,24 @@ local function get_image(image_name, image_content)
     image.name = get_random_filename()
     image.extension = get_filename_format(image_name)
 
-    if ALLOWED_IMAGE_EXTENSIONS[image.extension] then
-        local _image = magick.load_image_from_blob(image_content)
-
-        if _image then
-            image.width  = _image:get_width()
-            image.height = _image:get_height()
-        else
-            print("The received image has no content")
-            return nil
-        end
-    else
+    if not ALLOWED_IMAGE_EXTENSIONS[image.extension] then
         print("Invalid logo image received")
         return nil
     end
 
+    if #image_content == 0 then
+        print("The received content has size 0")
+        return nil
+    end
+
+    local _image = magick.load_image_from_blob(image_content)
+    if not _image then
+        print("The received image has no content")
+        return nil    
+    end
+
+    image.width  = _image:get_width()
+    image.height = _image:get_height()
     image.content = image_content
     image.fullname = image.name .. image.extension
 
