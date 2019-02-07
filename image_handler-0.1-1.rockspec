@@ -1,7 +1,8 @@
 package = "image_handler"
-version = "0.1-0"
+version = "0.1-1"
 source = {
-   url = "https://github.com/drmargarido/image_handler.git"
+   url = "git://github.com/drmargarido/image_handler",
+   tag = "v0.1.1"
 }
 dependencies = {
    "lua >= 5.1",
