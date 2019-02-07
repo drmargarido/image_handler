@@ -6,8 +6,8 @@ This library wraps the common code that is needed to handle images when they are
 ## Usage Example - [Lapis](http://leafo.net/lapis/)
 
 ```lua
-local get_image = require "post_image.get_image"
-local save_image = require "post_image.save_image"
+local get_image = require "image_handler".get_image
+local save_image = require "image_handler".save_image
 
 POST = function(self)
     -- Get the form posted image data from the request
@@ -33,8 +33,7 @@ end
 
 ## Methods
 
-* __get_image(image_name, image_content)__
-Checks if the filename format is in the extensions whitelist, validates if the received image content has any content. Return nil in case of error, or in case of success a table with:
+* __get_image(image_name, image_content)__ - Checks if the filename format is in the extensions whitelist, validates if the received image content has any content. Return nil in case of error, or in case of success a table with:
 ```lua
 {
     name = "Random generated name so it can be stored",
@@ -45,17 +44,13 @@ Checks if the filename format is in the extensions whitelist, validates if the r
     fullname = "Image name + extension"
 }
 ```
-* __save_image(image)__ 
-Receives the image table obtained from get_image and saves the image with the generated name in the configurated base_folder.
+* __save_image(image)__ - Receives the image table obtained from get_image and saves the image with the generated name in the configurated base_folder.
 
-* __delete_image(image_name)__
- Receives an image fullname and deletes it from the configurated base_folder.
+* __delete_image(image_name)__ - Receives an image fullname and deletes it from the configurated base_folder.
 
-* __set_base_folder(path)__ 
-Changes the base folder of the images. (default "./")
+* __set_base_folder(path)__ - Changes the base folder of the images. (default "./")
 
-* __set_allowed_formats(formats)__
-Sets a new table with the allowed image formats. (default {".jpg", ".png", ".jpeg", ".bmp"})
+* __set_allowed_formats(formats)__ - Sets a new table with the allowed image formats. (default {".jpg", ".png", ".jpeg", ".bmp"})
 
 
 ## Dependencies
@@ -77,5 +72,5 @@ sudo apt-get install libmagickwand-dev
 Use LuaRocks to install the lua packages:
 ```sh
 sudo apt-get install luarocks
-luarocks install post_image
+luarocks install image_handler
 ```
