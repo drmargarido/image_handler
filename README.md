@@ -59,7 +59,6 @@ end
 
 * [printable_chars](https://github.com/drmargarido/printable_chars) - To help in the generation of random file names.
 
-
 ## Installation
 
 Magic depends on LuaJIT and MagickWand.

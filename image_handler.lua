@@ -23,6 +23,18 @@ local base_folder = "./"
 
 
 --[[    Private helpers     ]]--
+local function file_exists(filename)
+    local ok, err, code = os.rename(filename, filename)
+    if not ok then
+        if code == 13 then
+            -- Permission denied, but it exists
+            return true
+        end
+    end
+
+    return ok, err
+end
+
 local function get_filename_format(filename)
     local extension = filename:match("^.+(%..+)$")
     if extension then
@@ -65,9 +77,15 @@ end
 --[[    Image controlling methods   ]]--
 local function get_image(image_name, image_content)
     local image = {}
-
-    image.name = get_random_filename()
     image.extension = get_filename_format(image_name)
+
+    local random_filename, exists
+    repeat
+        random_filename = get_random_filename()
+        exists, _ = file_exists(base_folder .. random_filename .. image.extension)
+    until not exists
+    image.name = random_filename
+    
 
     if not ALLOWED_IMAGE_EXTENSIONS[image.extension] then
         print("Invalid logo image received")
