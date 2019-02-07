@@ -100,7 +100,7 @@ local function save_image(image)
 end
 
 local function delete_image(image_name)
-    os.remove(base_folder .. image.image_name)
+    os.remove(base_folder .. image_name)
 end
 
 return {
