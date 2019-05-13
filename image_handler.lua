@@ -85,7 +85,6 @@ local function get_image(image_name, image_content)
         exists, _ = file_exists(base_folder .. random_filename .. image.extension)
     until not exists
     image.name = random_filename
-    
 
     if not ALLOWED_IMAGE_EXTENSIONS[image.extension] then
         print("Invalid logo image received")

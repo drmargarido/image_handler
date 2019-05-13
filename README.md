@@ -59,6 +59,8 @@ end
 
 * [printable_chars](https://github.com/drmargarido/printable_chars) - To help in the generation of random file names.
 
+* Since it uses the /dev/urandom to generate file names, it can only run on a Unix based system.
+
 ## Installation
 
 Magic depends on LuaJIT and MagickWand.
