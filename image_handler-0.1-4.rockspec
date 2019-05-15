@@ -1,13 +1,13 @@
 package = "image_handler"
-version = "0.1-3"
+version = "0.1-4"
 source = {
    url = "git://github.com/drmargarido/image_handler",
-   tag = "v0.1.3"
+   tag = "v0.1.4"
 }
 dependencies = {
-   "lua >= 5.1",
+   "lua == 5.1",
    "printable_chars",
-   "magic"
+   "magick"
 }
 description = {
    detailed = "This library wraps the common code that is needed to handle images when they are submitted to an application over the internet.",

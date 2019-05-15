@@ -61,8 +61,8 @@ end
 -- Define the image formats whitelist
 local function set_allowed_formats(formats)
     local new_formats = {}
-    for i = 0, #formats do
-        new_formats[formats[i]] = true
+    for i, format in ipairs(formats) do
+        new_formats[format] = true
     end
 
     ALLOWED_IMAGE_EXTENSIONS = new_formats

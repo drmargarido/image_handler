@@ -75,3 +75,16 @@ Use LuaRocks to install the lua packages:
 sudo apt-get install luarocks
 luarocks install image_handler
 ```
+
+## Testing
+
+To run the unit tests the busted tool is needed. You can install it with luarocks:
+```sh
+luarocks install busted
+```
+
+To run the unit tests we need to tell busted to use luajit.
+We can test with the following command.
+```sh
+busted --lua /usr/bin/luajit spec
+```
